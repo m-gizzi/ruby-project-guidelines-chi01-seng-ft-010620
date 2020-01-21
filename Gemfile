@@ -5,4 +5,4 @@ gem "sinatra-activerecord"
 gem "sqlite3"
 gem "pry"
 gem "require_all"
-gem 'ascii-image', '~> 0.1.4'
+gem 'faker'
