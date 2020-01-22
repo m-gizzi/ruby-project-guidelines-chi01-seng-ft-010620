@@ -34,18 +34,27 @@ end
 def my_photos
     system "clear"
     puts "These are your photos\n\n"
+    indices = []
     person = User.find_or_create_by_name($user_name)
-    person.photos.each do |photo|
-        puts photo.file
+    person.photos.each_with_index do |photo, index|
+        puts "#{index+1}. #{photo.file}"
+        indices << index+1
     end
     puts "\n\n\n\n"
-    puts "Press q to return to the homepage"
+    puts "Choose a photo or press q to return to the homepage"
     my_photo_input = gets.chomp
-    case my_photo_input
-    when "q"
-        homepage
+    # binding.pry
+    if indices.include?(my_photo_input.to_i)
+        system "clear"
+        puts "#{person.photos[my_photo_input.to_i-1].file}"
+        gets.chomp
     else
-        my_photos
+        case my_photo_input
+        when "q"
+            homepage
+        else
+            my_photos
+        end
     end
 end
 # Hyacinth Hansen Murray DVM

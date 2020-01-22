@@ -1,5 +1,5 @@
 require_relative '../config/environment'
-require_relative 'upload'
+require_relative 'search.rb'
 require_relative 'helper_methods_matthew.rb'
 require_relative 'upload.rb'
 require 'pry'
