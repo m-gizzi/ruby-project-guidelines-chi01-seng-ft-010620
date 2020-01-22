@@ -6,7 +6,7 @@ gem "sqlite3"
 gem "pry"
 gem "require_all"
 
-gem 'ascii-image'
+gem 'catpix'
 gem 'rmagick'
 gem 'faker'
 
