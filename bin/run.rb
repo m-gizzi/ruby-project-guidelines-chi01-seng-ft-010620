@@ -2,11 +2,11 @@ require_relative '../config/environment'
 require_relative 'search.rb'
 require_relative 'helper_methods_matthew.rb'
 require_relative 'upload.rb'
-require_relative '../pictures/picex'
+# require_relative '../pictures/picex'
 require 'pry'
 require 'RMagick'
-images = Magick::Image.read(picex.jpg)
-images[0].display
+# images = Magick::Image.read(picex.jpg)
+# images[0].display
 
   
 system "clear"
@@ -14,7 +14,7 @@ puts "Welcome to Concertgram!\n\n"
 
 puts "Please enter a username"
 $user_name = gets.chomp
-User.find_or_create_by_name($user_name)
+USER = User.find_or_create_by_name($user_name)
 def homepage
     system "clear"
     puts "Hi #{$user_name}! Please select an option:\n\n"

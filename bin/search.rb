@@ -6,8 +6,14 @@ def user_search
     input = gets.chomp
     puts "\n\n"
     person = User.find_or_create_by_name(input)
-    # binding.pry
-    if person.photos.count == 0
+    if person == nil
+        puts "No users with this name"
+        puts "Press any key to go back to search"
+        result = gets.chomp
+        if result
+            search
+        end
+    elsif person.photos.count == 0
         puts "No photos for this user"
     end
     person.photos.each do |photo|
@@ -30,8 +36,14 @@ def concert_search
     input = gets.chomp
     puts "\n\n"
     event = Concert.find_by(displayName: input)
-    # binding.pry
-    if event.photos.count == 0
+    if event == nil
+        puts "No concerts for this band"
+        puts "Press any key to go back to search"
+        result = gets.chomp
+        if result
+            search
+        end
+    elsif event.photos.count == 0
         puts "No photos for this concert"
     end
     event.photos.each do |photo|
@@ -48,29 +60,48 @@ def concert_search
         end
     end
 
-# def concert_search
-#     system "clear"
-#     puts "Enter a band:"
-#     input = gets.chomp
-#     puts "\n\n"
-#     event = Concert.find_by(displayName: input)
-#     # binding.pry
-#     if event.photos.count == 0
-#         puts "No photos for this concert"
-#     end
-#     event.photos.each do |photo|
-#         puts photo.file
-#     end
-#     puts "\n\n"
-#     puts "Press any key to go back to search"
-#     winput = gets.chomp
-#         case winput
-#         when "q"
-#             search
-#         else
-#             search
-#         end
-#     end
+def date_search
+    binding.pry
+    begin
+    system "clear"
+    puts "Enter a date:"
+    input = gets.chomp
+    # if input.to_date raise ArgumentError
+    #     puts "No"
+    #     search
+    # end
+    validated = input.to_date
+    puts "\n\n"
+    event = Concert.find_by(date: validated)
+    if event == nil
+        puts "No concerts on this date"
+        puts "Press any key to go back to search"
+        result = gets.chomp
+        if result
+            search
+        end
+    elsif event.photos.count == 0
+        puts "No photos for this concert"
+    end
+    event.photos.each do |photo|
+        puts photo.file
+    end
+    puts "\n\n"
+    puts "Press any key to go back to search"
+    winput = gets.chomp
+        case winput
+        when "q"
+            search
+        else
+            search
+        end
+    rescue
+        puts "Please enter a date"
+        puts "Press any key to return to search"
+        input = gets.chomp
+        date_search
+    end
+    end
 
 
 def most_popular
@@ -103,9 +134,7 @@ def search
     when "2"
         concert_search
     when "3"
-        system "clear"
-        puts "Enter a date"
-        input = gets.chomp
+        date_search
     when "4"
         most_popular
     when "q"
