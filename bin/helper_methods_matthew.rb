@@ -38,16 +38,31 @@ def my_photos
     person = User.find_or_create_by_name($user_name)
     person.photos.each_with_index do |photo, index|
         puts "#{index+1}. #{photo.file}"
-        indices << index+1
     end
+
     puts "\n\n\n\n"
+
     puts "Choose a photo or press q to return to the homepage"
     my_photo_input = gets.chomp
-    # binding.pry
-    if indices.include?(my_photo_input.to_i)
+    photo_index = my_photo_input.to_i - 1
+    if person.photos.length >  photo_index && photo_index >= 0
         system "clear"
-        puts "#{person.photos[my_photo_input.to_i-1].file}"
-        gets.chomp
+        # Display photo
+        puts person.photos[photo_index].file
+        puts "Type delete to delete this photo"
+        del = gets.chomp
+        case del
+        when "delete"
+            USER.delete_photo(person.photos[photo_index])
+            puts "Aaaaaaaaand it's gone"
+        else my_photos
+        end
+    else
+    
+
+    case my_photo_input
+    when "q"
+        homepage
     else
         case my_photo_input
         when "q"
