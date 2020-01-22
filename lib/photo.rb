@@ -14,7 +14,7 @@ class Photo < ActiveRecord::Base
     end
 
     def self.random_photo
-        self.all.sample
+        self.all.sample.file
     end
 
 end
