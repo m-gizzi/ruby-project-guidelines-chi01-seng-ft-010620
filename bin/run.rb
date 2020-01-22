@@ -1,4 +1,5 @@
 require_relative '../config/environment'
+require_relative 'helper_methods_matthew.rb'
 require 'pry'
 
 system "clear"
@@ -15,7 +16,7 @@ case selection
 when "1"
     puts "Upload"
 when "2"
-    puts "Random"
+    random_page
 end
 
 #ascii = ASCII_Image.new("http://www.levihackwith.com/wp-content/uploads/2011/10/github-logo.png")
