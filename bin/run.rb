@@ -2,8 +2,13 @@ require_relative '../config/environment'
 require_relative 'upload'
 require_relative 'helper_methods_matthew.rb'
 require_relative 'upload.rb'
+require_relative '../pictures/picex'
 require 'pry'
+require 'RMagick'
+images = Magick::Image.read(picex.jpg)
+images[0].display
 
+  
 system "clear"
 puts "Welcome to Concertgram!\n\n"
 
@@ -23,11 +28,11 @@ def homepage
 
     case selection
     when "1"
-        upload(user_name)
+        upload
     when "2"
         random_page
     when "3"
-        my_photos(user_name)
+        my_photos
     when "4"
         search
     when "5"

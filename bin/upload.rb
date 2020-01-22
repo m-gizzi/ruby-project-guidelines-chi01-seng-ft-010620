@@ -1,10 +1,10 @@
 
-def upload(user_name)
+def upload
     puts "Submit your photo url or press q to go back to the home page"
     photo_url = gets.chomp
     case photo_url
     when "q"
-        homepage(user_name)
+        homepage
     else 
         puts "Enter the name of the concert the photo is of"
         concert_name = gets.chomp
@@ -20,7 +20,7 @@ def upload(user_name)
             
         else
             puts "Concert not found please reupload your photo"
-            upload(user_name)
+            upload
         end
     end
 end
