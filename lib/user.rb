@@ -6,11 +6,13 @@ class User < ActiveRecord::Base
         new_photo = Photo.create(file: file, caption: caption)
         self.photos << new_photo
         concert.photos << new_photo
+
         new_photo
     end
 
     def delete_photo(photo)
-        photo.destroy
+
+        photo.delete
         self.reload
     end
 
@@ -19,8 +21,9 @@ class User < ActiveRecord::Base
     end
 
 
-    def photos_by_date(date)
-        self.photos.all.select{|photo| photo.created_at.to_date == date}
+    def photos_by_date(date_as_string)
+        validated = date_as_string.to_date
+        self.photos.select{|photo| photo.created_at.to_date == validated}
     end
 
 
