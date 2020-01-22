@@ -1,4 +1,5 @@
 require_relative '../config/environment'
+require_relative 'upload'
 require_relative 'helper_methods_matthew.rb'
 require_relative 'upload.rb'
 require 'pry'
@@ -22,19 +23,21 @@ def homepage
 
     case selection
     when "1"
-        upload
+        upload(user_name)
     when "2"
         random_page
     when "3"
-        my_photos
+        my_photos(user_name)
     when "4"
         search
     when "5"
+        puts "Thank you for using Concertgram"
         exit
     else 
         homepage
     end
 end
+
 homepage
 #ascii = ASCII_Image.new("http://www.levihackwith.com/wp-content/uploads/2011/10/github-logo.png")
 #ascii.build(60)
