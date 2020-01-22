@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 20200121172844) do
 
   create_table "concerts", force: :cascade do |t|
-    t.string   "displayName"
-    t.string   "location"
-    t.datetime "date"
+    t.string "displayName"
+    t.string "location"
+    t.date   "date"
   end
 
   create_table "photos", force: :cascade do |t|
