@@ -2,14 +2,16 @@ class User < ActiveRecord::Base
     has_many :photos
     has_many :concerts, through: :photos
 
-    def upload_photo(file, caption = nil)
+    def upload_photo(file, concert, caption = nil)
         new_photo = Photo.create(file: file, caption: caption)
-        new_photo.user = self
+        self.photos << new_photo
+        concert.photos << new_photo
         new_photo
     end
 
     def delete_photo(photo)
         photo.destroy
+        self.reload
     end
 
     def most_photographed_concert
@@ -23,7 +25,7 @@ class User < ActiveRecord::Base
 
 
     def photos_by_concert_name(name)
-        self.photos.all.select{|photo| photo.concert.name == name}
+        self.photos.select{|photo| photo.concert.displayName == name}
     end
 
 
