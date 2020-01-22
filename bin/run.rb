@@ -1,9 +1,11 @@
 require_relative '../config/environment'
 require_relative 'upload'
+require_relative 'helper_methods_matthew.rb'
 require 'pry'
 
 system "clear"
 puts "Welcome to Concertgram!\n\n"
+
 puts "Please enter a username"
 user_name = gets.chomp
 USER = User.find_or_create_by_name(user_name)
@@ -19,6 +21,7 @@ def homepage(user_name)
 
 
     selection = gets.chomp
+
 
 
 
