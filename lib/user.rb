@@ -6,12 +6,10 @@ class User < ActiveRecord::Base
         new_photo = Photo.create(file: file, caption: caption)
         self.photos << new_photo
         concert.photos << new_photo
-
         new_photo
     end
 
     def delete_photo(photo)
-
         photo.delete
         self.reload
     end
