@@ -5,7 +5,7 @@ def user_search
     puts "Enter a username:"
     input = gets.chomp
     puts "\n\n"
-    person = User.find_or_create_by_name(input)
+    person = User.find_by(name: input)
     if person == nil
         puts "No users with this name"
         puts "Press any key to go back to search"
@@ -15,20 +15,19 @@ def user_search
         end
     elsif person.photos.count == 0
         puts "No photos for this user"
-    end
-    person.photos.each do |photo|
+    else
+        person.photos.each do |photo|
         puts photo.file
+        photo.display
+        end
     end
     puts "\n\n"
     puts "Press any key to go back to search"
     winput = gets.chomp
-        case winput
-        when "q"
-            search
-        else
+        if winput
             search
         end
-    end
+end
 
 def concert_search
     system "clear"
@@ -45,10 +44,12 @@ def concert_search
         end
     elsif event.photos.count == 0
         puts "No photos for this concert"
+    else
+        event.photos.each do |photo|
+            puts photo.file
+        end
     end
-    event.photos.each do |photo|
-        puts photo.file
-    end
+
     puts "\n\n"
     puts "Press any key to go back to search"
     winput = gets.chomp

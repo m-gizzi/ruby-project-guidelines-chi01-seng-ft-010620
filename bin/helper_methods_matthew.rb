@@ -19,8 +19,7 @@
 
 def random_page
     system "clear"
-    puts Photo.random_photo
-    puts "\n\n\n\n"
+    Photo.random_photo
     puts "Press q to return to the homepage, otherwise, press any key for the next photo"
     rand_input = gets.chomp
     case rand_input
@@ -35,8 +34,7 @@ def my_photos
     system "clear"
     puts "These are your photos\n\n"
     indices = []
-    person = User.find_or_create_by_name($user_name)
-    person.photos.each_with_index do |photo, index|
+    USER.photos.each_with_index do |photo, index|
         puts "#{index+1}. #{photo.file}"
     end
 
@@ -49,17 +47,15 @@ def my_photos
     if person.photos.length >  photo_index && photo_index >= 0
         system "clear"
         # Display photo
-        file_to_open = nil
-        file_to_open = person.photos[photo_index].file
-        system %{open "#{file_to_open}"}
+        USER.photos[photo_index].display
 # binding.pry
 
-        puts person.photos[photo_index].file
+        puts USER.photos[photo_index].file
         puts "Type delete to delete this photo or any other key to go back"
         del = gets.chomp
         case del
         when "delete"
-            USER.delete_photo(person.photos[photo_index])
+            USER.delete_photo(USER.photos[photo_index])
             puts "Aaaaaaaaand it's gone"
             puts "Press any key to go back"
             gets.chomp

@@ -7,6 +7,7 @@ def upload
     when "q"
         homepage
     else 
+
         enter_concert
     end
 end
@@ -16,10 +17,10 @@ def enter_concert
     concert_name = gets.chomp
     concert = Concert.find_by(displayName: concert_name)
     if concert
-    puts "Caption?"
-    caption = gets.chomp
-    USER.upload_photo(@photo_url, concert, caption)
-
+      puts "Caption?"
+      caption = gets.chomp
+      USER.upload_photo(@photo_url, concert, caption)
+      pic = USER.photos.find_by(name: photo_file)
 
     puts "Upload Complete"
     puts "Press any key to go back"
@@ -27,11 +28,16 @@ def enter_concert
     homepage
 
 
-    else
-    puts "Concert not found please try again"
-    # puts "Press any key to go back"
-    # gets.chomp
-    enter_concert
+            pic.display
+
+            puts "Press any key to go back"
+            gets.chomp
+            homepage
+            
+        else
+            puts "Concert not found please reupload your photo"
+            enter_concert
+        end
     end
 end
 
