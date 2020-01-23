@@ -18,7 +18,6 @@ def user_search
     else
         person.photos.each do |photo|
         puts photo.file
-        photo.display
         end
     end
     puts "\n\n"
@@ -37,7 +36,7 @@ def concert_search
     event = Concert.find_by(displayName: input)
     if event == nil
         puts "No concerts for this band"
-        puts "Press any key to go back to search"
+        puts "Press any key to go back to the search menu"
         result = gets.chomp
         if result
             search
@@ -45,21 +44,39 @@ def concert_search
     elsif event.photos.count == 0
         puts "No photos for this concert"
     else
-        event.photos.each do |photo|
-            puts photo.file
+        def concert_photos(input,event)
+            system "clear"
+            puts "Here are the photos of #{input}\n\n"
+            event.photos.each_with_index do |photo, index|
+                puts "#{index+1}. #{photo.file}"
+            end
+        
+            puts "\n\n\n\n"
+        
+            puts "Choose a photo or press q to return to the search menu"
+            my_photo_input = gets.chomp
+            photo_index = my_photo_input.to_i - 1
+            if event.photos.length >  photo_index && photo_index >= 0
+                system "clear"
+                event.photos[photo_index].display
+        
+                puts event.photos[photo_index].file
+                gets.chomp
+                concert_photos(input,event)
+            elsif my_photo_input == "q"
+                search
+            else
+                concert_search
+            end
         end
+        concert_photos(input,event)
     end
 
     puts "\n\n"
-    puts "Press any key to go back to search"
-    winput = gets.chomp
-        case winput
-        when "q"
-            search
-        else
-            search
-        end
-    end
+    puts "Press any key to go back to the search menu"
+    gets.chomp
+    search 
+end
 
 def date_search
     binding.pry
@@ -79,7 +96,7 @@ def date_search
         end
     elsif event.photos.count == 0
         puts "No photos for this concert"
-    end
+    else
     event.photos.each do |photo|
         puts photo.file
     end

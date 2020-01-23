@@ -1,5 +1,0 @@
-In order to get the upload function to work:
-1. Find the path on your computer to the pictures folder by dragging the pictures folder into the terminal (copy to your clipboard)
-2. Go into lib/photo.rb and access the method #display, replace the pic_path string with your pictures path as a string (paste inside the quotes)
-3. Put any photos you want to upload in the pictures folder
-4. Simply type the name of the picture file with extension when prompted for the file in "Upload photo"
