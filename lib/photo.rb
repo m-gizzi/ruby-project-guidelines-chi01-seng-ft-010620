@@ -18,8 +18,8 @@ class Photo < ActiveRecord::Base
     end
 
     def display
-        pic_path = "/Users/samzandi/Desktop/flatiron/projects/mod1/ruby-project-guidelines-chi01-seng-ft-010620/bin/pictures/"
-        file_to_open = pic_path + self.file
+        pic_path = "/Users/samzandi/Desktop/flatiron/projects/mod1/ruby-project-guidelines-chi01-seng-ft-010620/bin/pictures"
+        file_to_open = pic_path + "/" + self.file
         system %{open "#{file_to_open}"}
     end
 
