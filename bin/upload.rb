@@ -1,6 +1,7 @@
 def upload
     system "clear"
     puts "Submit your photo file name or press q to go back to the home page"
+  
     @photo_url = gets.chomp
     case @photo_url
     when "q"
@@ -19,10 +20,12 @@ def enter_concert
     caption = gets.chomp
     USER.upload_photo(@photo_url, concert, caption)
 
+
     puts "Upload Complete"
     puts "Press any key to go back"
     gets.chomp
     homepage
+
 
     else
     puts "Concert not found please try again"
