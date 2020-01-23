@@ -67,6 +67,7 @@ def my_photos
     when "q"
         homepage
     else
+
         case my_photo_input
         when "q"
             homepage

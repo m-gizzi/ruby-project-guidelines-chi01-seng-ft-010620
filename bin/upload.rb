@@ -1,5 +1,6 @@
 
 def upload
+    system "clear"
     puts "Submit your photo url or press q to go back to the home page"
     photo_url = gets.chomp
     case photo_url
@@ -16,6 +17,8 @@ def upload
 
             puts "Upload Complete"
             
+            get.chomp
+            homepage
             
             
         else
