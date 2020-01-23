@@ -1,22 +1,32 @@
-
 def upload
     system "clear"
     puts "Submit your photo file name or press q to go back to the home page"
-    photo_file = gets.chomp
-    case photo_file
+  
+    @photo_url = gets.chomp
+    case @photo_url
     when "q"
         homepage
     else 
-        puts "Enter the name of the concert the photo is of"
-        concert_name = gets.chomp
-        concert = Concert.find_by(displayName: concert_name)
-        if concert
-            puts "Caption?"
-            caption = gets.chomp
-            USER.upload_photo(photo_file, concert, caption)
-            pic = USER.photos.find_by(name: photo_file)
 
-            puts "Upload Complete"
+        enter_concert
+    end
+end
+
+def enter_concert
+    puts "Enter the name of the concert the photo is of"
+    concert_name = gets.chomp
+    concert = Concert.find_by(displayName: concert_name)
+    if concert
+      puts "Caption?"
+      caption = gets.chomp
+      USER.upload_photo(@photo_url, concert, caption)
+      pic = USER.photos.find_by(name: photo_file)
+
+    puts "Upload Complete"
+    puts "Press any key to go back"
+    gets.chomp
+    homepage
+
 
             pic.display
 
@@ -26,7 +36,7 @@ def upload
             
         else
             puts "Concert not found please reupload your photo"
-            upload
+            enter_concert
         end
     end
 end
