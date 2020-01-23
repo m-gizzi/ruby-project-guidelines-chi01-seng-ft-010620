@@ -55,6 +55,9 @@ def my_photos
         when "delete"
             USER.delete_photo(person.photos[photo_index])
             puts "Aaaaaaaaand it's gone"
+            puts "Press any key to go back"
+            gets.chomp
+            my_photos
         else my_photos
         end
     else
