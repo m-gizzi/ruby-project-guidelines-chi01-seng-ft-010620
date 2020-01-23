@@ -96,9 +96,13 @@ def date_search
     date_search_results
     rescue
         puts "Please enter a date"
-        puts "Press any key to return to search"
+        puts "Press any key to try again or q to return to search"
         input = gets.chomp
-        date_search
+        if input == 'q'
+            search
+        else
+            date_search
+        end
     end
     end
 
@@ -143,6 +147,7 @@ def search
 end
 
 def user_search_results
+    system "clear"
     @person.photos.each_with_index do |photo, index|
         puts "#{index+1}. #{photo.file}"
     end
@@ -154,7 +159,7 @@ def user_search_results
         system "clear"
         # Display photo
         @person.photos[photo_index].display
-        search_results
+        user_search_results
     elsif my_photo_input == 'q'
         search
     else

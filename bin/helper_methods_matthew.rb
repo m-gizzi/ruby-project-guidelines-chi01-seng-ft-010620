@@ -47,7 +47,9 @@ def my_photos
         USER.photos[photo_index].display
 
         puts USER.photos[photo_index].file
-        puts "Type delete to delete this photo or any other key to go back"
+        puts "Type edit to edit file name"
+        puts "Type delete to delete this photo"
+        puts "Type any other key to go back"
         del = gets.chomp
         case del
         when "delete"
@@ -56,7 +58,15 @@ def my_photos
             puts "Press any key to go back"
             gets.chomp
             my_photos
-
+        when "edit"
+            puts "What should the new file name be?"
+            name = gets.chomp
+            USER.photos[photo_index].file = name
+            USER.photos[photo_index].save
+            puts "File updated\n\n"
+            puts "Press any key to go back"
+            gets.chomp
+            my_photos
         else my_photos
         end
     else
