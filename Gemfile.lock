@@ -12,14 +12,11 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
-    catpix (0.2.0)
-      docopt (~> 0.5, >= 0.5.0)
-      rmagick (~> 2.15, >= 2.15.2)
-      ruby-terminfo (~> 0.1, >= 0.1.1)
-      tco (~> 0.1, >= 0.1.8)
+    ascii-image (0.1.5)
+      rainbow (~> 3.0, >= 3.0.0)
+      rmagick (~> 2.16, >= 2.16.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
-    docopt (0.6.1)
     faker (2.10.1)
       i18n (>= 1.6, < 2)
     i18n (1.8.2)
@@ -34,9 +31,9 @@ GEM
     rack (2.1.1)
     rack-protection (2.0.8.1)
       rack
+    rainbow (3.0.0)
     require_all (3.0.0)
     rmagick (2.16.0)
-    ruby-terminfo (0.1.1)
     ruby2_keywords (0.0.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
@@ -47,7 +44,6 @@ GEM
       activerecord (>= 3.2)
       sinatra (>= 1.0)
     sqlite3 (1.4.2)
-    tco (0.1.8)
     thread_safe (0.3.6)
     tilt (2.0.10)
     tzinfo (1.2.6)
@@ -58,7 +54,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  catpix
+  ascii-image
   faker
   pry
   require_all

@@ -18,7 +18,8 @@ def upload
             puts "Upload Complete"
             puts "Press any key to go back"
             gets.chomp
-            upload
+            homepage
+
             
             
         else
