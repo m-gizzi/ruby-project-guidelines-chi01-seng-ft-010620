@@ -26,17 +26,15 @@ def enter_concert
         pic = USER.photos.find_by(file: @photo_file)
 
         puts "Upload Complete"
-
-            pic.display
-
-            puts "Press any key to go back"
-            gets.chomp
-            homepage
-            
-        else
-            puts "Concert not found please try again"
-            enter_concert
-        end
-
+        pic.display
+        puts "Press any key to go back"
+        gets.chomp
+        homepage
+        
+    else
+        puts "Concert not found please try again"
+        enter_concert
+    end
+end
 
 require_relative 'run'
