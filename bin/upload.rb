@@ -13,15 +13,16 @@ def upload
         if concert
             puts "Caption?"
             caption = gets.chomp
-            USER.upload_photo(photo_url, concert, caption)
+            USER.upload_photo(photo_file, concert, caption)
+            pic = USER.photos.find_by(name: photo_file)
 
             puts "Upload Complete"
+
+            pic.display
 
             puts "Press any key to go back"
             gets.chomp
             homepage
-
-            
             
         else
             puts "Concert not found please reupload your photo"
