@@ -44,12 +44,18 @@ def my_photos
 
     puts "Choose a photo or press q to return to the homepage"
     my_photo_input = gets.chomp
+    # binding.pry
     photo_index = my_photo_input.to_i - 1
     if person.photos.length >  photo_index && photo_index >= 0
         system "clear"
         # Display photo
+        file_to_open = nil
+        file_to_open = person.photos[photo_index].file
+        system %{open "#{file_to_open}"}
+# binding.pry
+
         puts person.photos[photo_index].file
-        puts "Type delete to delete this photo"
+        puts "Type delete to delete this photo or any other key to go back"
         del = gets.chomp
         case del
         when "delete"

@@ -16,9 +16,10 @@ def upload
             USER.upload_photo(photo_url, concert, caption)
 
             puts "Upload Complete"
-            
-            get.chomp
+            puts "Press any key to go back"
+            gets.chomp
             homepage
+
             
             
         else
