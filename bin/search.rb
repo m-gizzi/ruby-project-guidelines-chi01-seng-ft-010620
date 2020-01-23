@@ -66,10 +66,6 @@ def date_search
     system "clear"
     puts "Enter a date:"
     input = gets.chomp
-    # if input.to_date raise ArgumentError
-    #     puts "No"
-    #     search
-    # end
     validated = input.to_date
     puts "\n\n"
     event = Concert.find_by(date: validated)
