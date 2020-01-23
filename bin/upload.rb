@@ -1,5 +1,6 @@
 
 def upload
+    system "clear"
     puts "Submit your photo url or press q to go back to the home page"
     photo_url = gets.chomp
     case photo_url
@@ -15,7 +16,9 @@ def upload
             USER.upload_photo(photo_url, concert, caption)
 
             puts "Upload Complete"
-            
+            puts "Press any key to go back"
+            gets.chomp
+            upload
             
             
         else
