@@ -27,19 +27,16 @@ def enter_concert
 
         puts "Upload Complete"
 
-
             pic.display
 
             puts "Press any key to go back"
             gets.chomp
             homepage
             
-    else
-        puts "Concert not found please try again"
-        enter_concert
-    
-    end
-end
+        else
+            puts "Concert not found please try again"
+            enter_concert
+        end
 
 
 require_relative 'run'

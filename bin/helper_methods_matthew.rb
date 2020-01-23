@@ -56,12 +56,16 @@ def my_photos
             puts "Press any key to go back"
             gets.chomp
             my_photos
-        else 
+
+        else my_photos
+        end
+    else
+        case my_photo_input
+        when "q"
+            homepage
+        else
             my_photos
         end
-        
-    else
-        my_photos
     end
 end
 # Hyacinth Hansen Murray DVM

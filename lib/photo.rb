@@ -19,7 +19,7 @@ class Photo < ActiveRecord::Base
 
     def display
         pic_path = "./pictures"
-        file_to_open =  pic_path + "/" + self.file
+        file_to_open =  (pic_path + "/" + self.file)
         system %{open #{file_to_open}}
     end
 
