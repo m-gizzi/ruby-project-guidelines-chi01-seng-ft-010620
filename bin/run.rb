@@ -2,11 +2,12 @@ require_relative '../config/environment'
 require_relative 'upload'
 require_relative 'helper_methods_matthew.rb'
 require_relative 'upload.rb'
-require_relative '../pictures/picex'
+#require_relative '../pictures/picex.jpg'
 require 'pry'
 require 'RMagick'
-images = Magick::Image.read(picex.jpg)
-images[0].display
+require 'ascii-image'
+ascii = ASCII_Image.new("http://www.levihackwith.com/wp-content/uploads/2011/10/github-logo.png")
+ascii.build(60)
 
   
 system "clear"
@@ -14,7 +15,7 @@ puts "Welcome to Concertgram!\n\n"
 
 puts "Please enter a username"
 $user_name = gets.chomp
-User.find_or_create_by_name($user_name)
+USER = User.find_or_create_by_name($user_name)
 def homepage
     system "clear"
     puts "Hi #{$user_name}! Please select an option:\n\n"

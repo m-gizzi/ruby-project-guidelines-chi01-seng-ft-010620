@@ -59,11 +59,12 @@ def my_photos
     else
     
 
-    case my_photo_input
-    when "q"
-        homepage
-    else
-        my_photos
+        case my_photo_input
+        when "q"
+            homepage
+        else
+            my_photos
+        end
     end
 end
 # Hyacinth Hansen Murray DVM
