@@ -44,7 +44,6 @@ def my_photos
     photo_index = my_photo_input.to_i - 1
     if USER.photos.length >  photo_index && photo_index >= 0
         system "clear"
-        # Display photo
         USER.photos[photo_index].display
 
         puts USER.photos[photo_index].file
@@ -57,6 +56,7 @@ def my_photos
             puts "Press any key to go back"
             gets.chomp
             my_photos
+
         else my_photos
         end
     else

@@ -2,8 +2,8 @@ def upload
     system "clear"
     puts "Submit your photo file name or press q to go back to the home page"
   
-    @photo_url = gets.chomp
-    case @photo_url
+    @photo_file = gets.chomp
+    case @photo_file
     when "q"
         homepage
     else 
@@ -13,16 +13,19 @@ def upload
 end
 
 def enter_concert
-    puts "Enter the name of the concert the photo is of"
+    puts "Enter the name of the concert the photo is of or press q to go back to the homepage"
     concert_name = gets.chomp
     concert = Concert.find_by(displayName: concert_name)
+    if concert_name == "q"
+        homepage
+    end
     if concert
-      puts "Caption?"
-      caption = gets.chomp
-      USER.upload_photo(@photo_url, concert, caption)
-      pic = USER.photos.find_by(file: @photo_url)
+        puts "Caption?"
+        caption = gets.chomp
+        USER.upload_photo(@photo_file, concert, caption)
+        pic = USER.photos.find_by(file: @photo_file)
 
-    puts "Upload Complete"
+        puts "Upload Complete"
 
             pic.display
 
@@ -34,7 +37,6 @@ def enter_concert
             puts "Concert not found please try again"
             enter_concert
         end
-    end
 
 
 require_relative 'run'

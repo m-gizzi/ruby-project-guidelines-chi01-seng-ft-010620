@@ -18,12 +18,11 @@ $user_name = gets.chomp
 USER = User.find_or_create_by_name($user_name)
 def homepage
     system "clear"
-    puts "Hi #{$user_name}! Please select an option:\n\n"
+    puts "Hi #{$user_name}! Please select an option or press q to quit:\n\n"
     puts "1. Upload photo"
     puts "2. Random photo"
     puts "3. My photos"
     puts "4. Search"
-    puts "q. Quit"
 
     selection = gets.chomp
 
@@ -37,6 +36,7 @@ def homepage
     when "4"
         search
     when "q"
+        system "clear"
         puts "Thank you for using Concertgram"
         exit
     else 
