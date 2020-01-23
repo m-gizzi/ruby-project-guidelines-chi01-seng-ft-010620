@@ -23,7 +23,7 @@ def homepage
     puts "2. Random photo"
     puts "3. My photos"
     puts "4. Search"
-    puts "5. Quit"
+    puts "q. Quit"
 
     selection = gets.chomp
 
@@ -36,7 +36,7 @@ def homepage
         my_photos
     when "4"
         search
-    when "5"
+    when "q"
         puts "Thank you for using Concertgram"
         exit
     else 

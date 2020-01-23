@@ -16,6 +16,7 @@ def upload
             USER.upload_photo(photo_url, concert, caption)
 
             puts "Upload Complete"
+            
             get.chomp
             homepage
             
