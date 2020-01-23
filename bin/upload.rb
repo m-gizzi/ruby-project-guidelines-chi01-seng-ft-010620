@@ -20,13 +20,9 @@ def enter_concert
       puts "Caption?"
       caption = gets.chomp
       USER.upload_photo(@photo_url, concert, caption)
-      pic = USER.photos.find_by(name: photo_file)
+      pic = USER.photos.find_by(file: @photo_url)
 
     puts "Upload Complete"
-    puts "Press any key to go back"
-    gets.chomp
-    homepage
-
 
             pic.display
 
@@ -35,11 +31,10 @@ def enter_concert
             homepage
             
         else
-            puts "Concert not found please reupload your photo"
+            puts "Concert not found please try again"
             enter_concert
         end
     end
-end
 
 
 require_relative 'run'

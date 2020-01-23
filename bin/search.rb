@@ -5,28 +5,19 @@ def user_search
     puts "Enter a username:"
     input = gets.chomp
     puts "\n\n"
-    person = User.find_by(name: input)
-    if person == nil
+    @person = User.find_by(name: input)
+    if @person == nil
         puts "No users with this name"
         puts "Press any key to go back to search"
         result = gets.chomp
         if result
             search
         end
-    elsif person.photos.count == 0
+    elsif @person.photos.count == 0
         puts "No photos for this user"
     else
-        person.photos.each do |photo|
-        puts photo.file
-        photo.display
-        end
+        user_search_results
     end
-    puts "\n\n"
-    puts "Press any key to go back to search"
-    winput = gets.chomp
-        if winput
-            search
-        end
 end
 
 def concert_search
@@ -62,36 +53,29 @@ def concert_search
     end
 
 def date_search
-    binding.pry
     begin
     system "clear"
     puts "Enter a date:"
     input = gets.chomp
     validated = input.to_date
     puts "\n\n"
-    event = Concert.find_by(date: validated)
-    if event == nil
+    @event = Concert.find_by(date: validated)
+    if @event == nil
         puts "No concerts on this date"
         puts "Press any key to go back to search"
         result = gets.chomp
         if result
             search
         end
-    elsif event.photos.count == 0
+    elsif @event.photos.count == 0
         puts "No photos for this concert"
-    end
-    event.photos.each do |photo|
-        puts photo.file
-    end
-    puts "\n\n"
-    puts "Press any key to go back to search"
-    winput = gets.chomp
-        case winput
-        when "q"
-            search
-        else
+        puts "Press any key to go back to search"
+        result = gets.chomp
+        if result
             search
         end
+    end
+    date_search_results
     rescue
         puts "Please enter a date"
         puts "Press any key to return to search"
@@ -139,3 +123,45 @@ def search
     else search
     end
 end
+
+def user_search_results
+    @person.photos.each_with_index do |photo, index|
+        puts "#{index+1}. #{photo.file}"
+    end
+    puts "\n\n"
+    puts "Choose a photo or press q to return to the search menu"
+    my_photo_input = gets.chomp
+    photo_index = my_photo_input.to_i - 1
+    if @person.photos.length >  photo_index && photo_index >= 0
+        system "clear"
+        # Display photo
+        @person.photos[photo_index].display
+        search_results
+    elsif my_photo_input == 'q'
+        search
+    else
+        user_search_results
+    end
+end
+
+def date_search_results
+    @event.photos.each_with_index do |photo, index|
+        puts "#{index+1}. #{photo.file}"
+    end
+    puts "\n\n"
+    puts "Choose a photo or press q to return to the search menu"
+    my_photo_input = gets.chomp
+    photo_index = my_photo_input.to_i - 1
+    if @event.photos.length >  photo_index && photo_index >= 0
+        system "clear"
+        # Display photo
+        @event.photos[photo_index].display
+        date_search_results
+    elsif my_photo_input == 'q'
+        search
+    else
+        date_search_results
+    end
+end
+
+#Tue, 25 Jun 2019
