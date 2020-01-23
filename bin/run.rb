@@ -1,13 +1,13 @@
 require_relative '../config/environment'
-require_relative 'upload'
+require_relative 'search.rb'
 require_relative 'helper_methods_matthew.rb'
 require_relative 'upload.rb'
-#require_relative '../pictures/picex.jpg'
+
+# require_relative '../pictures/picex'
 require 'pry'
 require 'RMagick'
-require 'ascii-image'
-ascii = ASCII_Image.new("http://www.levihackwith.com/wp-content/uploads/2011/10/github-logo.png")
-ascii.build(60)
+# images = Magick::Image.read(picex.jpg)
+# images[0].display
 
   
 system "clear"
