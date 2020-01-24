@@ -9,12 +9,13 @@ def user_search
     if @person == nil
         puts "No users with this name"
         puts "Press any key to go back to search"
-        result = gets.chomp
-        if result
-            search
-        end
+        gets.chomp
+        search
     elsif @person.photos.count == 0
         puts "No photos for this user"
+        puts "Press any key to go back to search"
+        gets.chomp
+        search
     else
         user_search_results
     end
@@ -36,31 +37,6 @@ def concert_search
     elsif event.photos.count == 0
         puts "No photos for this concert"
     else
-        def concert_photos(input,event)
-            system "clear"
-            puts "Here are the photos of #{input}\n\n"
-            event.photos.each_with_index do |photo, index|
-                puts "#{index+1}. #{photo.file}"
-            end
-        
-            puts "\n\n\n\n"
-        
-            puts "Choose a photo or press q to return to the search menu"
-            my_photo_input = gets.chomp
-            photo_index = my_photo_input.to_i - 1
-            if event.photos.length >  photo_index && photo_index >= 0
-                system "clear"
-                event.photos[photo_index].display
-        
-                puts event.photos[photo_index].file
-                gets.chomp
-                concert_photos(input,event)
-            elsif my_photo_input == "q"
-                search
-            else
-                concert_search
-            end
-        end
         concert_photos(input,event)
     end
 
@@ -73,7 +49,7 @@ end
 def date_search
     begin
     system "clear"
-    puts "Enter a date:"
+    puts "Enter a date 'YYYY-MM-DD':"
     input = gets.chomp
     validated = input.to_date
     puts "\n\n"
@@ -88,10 +64,8 @@ def date_search
     elsif @event.photos.count == 0
         puts "No photos for this concert"
         puts "Press any key to go back to search"
-        result = gets.chomp
-        if result
-            search
-        end
+        gets.chomp
+        search
     end
     date_search_results
     rescue
@@ -104,7 +78,7 @@ def date_search
             date_search
         end
     end
-    end
+end
 
 
 def most_popular
@@ -184,6 +158,30 @@ def date_search_results
         search
     else
         date_search_results
+    end
+end
+
+def concert_photos(input,event)
+    system "clear"
+    puts "Here are the photos of #{input}\n\n"
+    event.photos.each_with_index do |photo, index|
+        puts "#{index+1}. #{photo.file}"
+    end
+
+    puts "\n\n\n\n"
+
+    puts "Choose a photo or press q to return to the search menu"
+    my_photo_input = gets.chomp
+    photo_index = my_photo_input.to_i - 1
+    if event.photos.length >  photo_index && photo_index >= 0
+        system "clear"
+        event.photos[photo_index].display
+
+        concert_photos(input,event)
+    elsif my_photo_input == "q"
+        search
+    else
+        concert_search
     end
 end
 
